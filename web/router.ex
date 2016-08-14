@@ -2,7 +2,7 @@ defmodule Peepchat.Router do
   use Peepchat.Web, :router
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug :accepts, ["json", "json-api"]
   end
 
   scope "/api", Peepchat do
