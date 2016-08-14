@@ -8,3 +8,10 @@ addons:
   postgresql: '9.4'
 before_script:
   - psql -c 'create database peepchat_test;' -U postgres
+deploy:
+  provider: heroku
+  api_key:
+    secure: rn5ho06DKE0n0N+5XSvce7Cg9+ZIltm6EEF2p3MJLAaA2RdUwzWLUsyJGl/j1h6/tSXHOd30Gq1ke1LqT/W/oKogDhQDKRnPav483ldSvwADamJg3euwY4pukjkBnfEWBTY9LFfeNs6lVSGWfW7N89VM3GnDX6zlNVrQpnmHt3VRes2Njtib/7GqkRZrrJMNLSX8i/kbOB8Sy/Qq8P5Ynz/ZQ04h67bERpRtBMfBiqQc+cE9hvb2k0xv9YOpJHfiRhto+R+1c9ESPRBtVBTxiC28GU7u74eFOYW9rlSuocYUGiOJJAnSAxI012Tfu+c6F0iYO5ps1LoAiVFSEIaesiQAxmtHaky5YLwFe2vLuaixnpntVyTryNmdVU18CSXFZNjs6PYjruXhw329FL9K9YpesyzUYtikiBFA2qPVWR0b+gFSUhpy+ntj6mfHADG+o4+ft8cFfyCnIeUYK6RNkU9Fz3PNxPkKeSkiinFuv7qHHFtHiU/Rp6Y9hODTMYkPLRPL3ESpzcmXIsfPT/KFEk7yhx2l4dclrXoxipWAAQeQ3eKmaf/N7Px2Iu1xAB9FfMxMjzAZ77ytby/5FSnrnAo9u3tsF27d/8TxBJkCM27BVzmbELoAGykoup2LQdr2fvf8dg6aS1+ZmsRl2x3mM6sBxE9brX6hpVNpYFtok2I=
+  app: protected-dawn-76953
+  on:
+    repo: kimroen/peepchat-api
