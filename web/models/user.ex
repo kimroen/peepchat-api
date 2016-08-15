@@ -19,7 +19,13 @@ defmodule Peepchat.User do
     struct
     |> cast(params, [:email, :password, :password_confirmation])
     |> validate_required([:email, :password, :password_confirmation])
+    |> validate_format(:email, ~r/@/)
+    |> validate_length(:password, min: 8)
+    |> validate_confirmation(:password)
     |> hash_password
+    |> unique_constraint(:email)
+  end
+
   defp hash_password(%{valid?: false} = changeset), do: changeset
   defp hash_password(%{valid?: true} = changeset) do
     hashedpw = Comeonin.Bcrypt.hashpwsalt(Ecto.Changeset.get_field(changeset, :password))
