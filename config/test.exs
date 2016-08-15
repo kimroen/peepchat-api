@@ -9,6 +9,9 @@ config :peepchat, Peepchat.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
+# Reduce the number of encryption rounds in tests
+config :comeonin, :bcrypt_log_rounds, 4
+
 # Configure your database
 config :peepchat, Peepchat.Repo,
   adapter: Ecto.Adapters.Postgres,
