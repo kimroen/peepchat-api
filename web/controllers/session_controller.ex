@@ -43,7 +43,7 @@ defmodule Peepchat.SessionController do
         # Print error to the console for debugging
         IO.inspect e
 
-        Logger.error "Unexpected error while attempting to login user " <> username <>
+        Logger.error "Unexpected error while attempting to login user " <> username
         conn
         |> put_status(401)
         |> render(Peepchat.ErrorView, "401.json")
