@@ -33,6 +33,7 @@ defmodule Peepchat.Mixfile do
     [{:phoenix, "~> 1.2.1"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_ecto, "~> 3.0"},
+     {:guardian, "~> 0.12.0"},
      {:postgrex, ">= 0.0.0"},
      {:gettext, "~> 0.11"},
      {:cors_plug, "~> 1.1"},
