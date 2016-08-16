@@ -7,8 +7,8 @@ defmodule Peepchat.ErrorView do
     |> JaSerializer.ErrorSerializer.format
   end
 
-  def render("404.json", _assigns) do
-    %{title: "Resource Not Found", code: 404}
+  def render("403.json", _assigns) do
+    %{title: "Forbidden", code: 403}
     |> JaSerializer.ErrorSerializer.format
   end
 

@@ -9,9 +9,9 @@ defmodule Peepchat.ErrorViewTest do
            %{errors: [%{code: 401, title: "Unauthorized"}]}
   end
 
-  test "renders 404.json" do
-    assert render(Peepchat.ErrorView, "404.json", []) ==
-           %{errors: [%{code: 404, title: "Resource Not Found"}]}
+  test "renders 403.json" do
+    assert render(Peepchat.ErrorView, "403.json", []) ==
+           %{errors: [%{code: 403, title: "Forbidden"}]}
   end
 
   test "renders 500.json" do
