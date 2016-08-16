@@ -1,9 +1,10 @@
 defmodule Peepchat.SessionController do
   use Peepchat.Web, :controller
 
+  require Logger
+
   import Ecto.Query, only: [where: 2]
   import Comeonin.Bcrypt
-  import Logger
 
   alias Peepchat.User
 
