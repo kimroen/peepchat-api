@@ -18,15 +18,19 @@ defmodule Peepchat.RoomController do
     render(conn, "index.json", data: rooms)
   end
 
-  def create(conn, %{"room" => room_params}) do
-    changeset = Room.changeset(%Room{}, room_params)
+  def create(conn, %{"data" => %{"type" => "rooms", "attributes" => room_params, "relationships" => _}) do
+    # Get the current user
+    current_user = Guardian.Plug.current_resource(conn)
+
+    # Build the current user's ID in the changeset
+    changeset = Room.changeset(%Room{owner_id: current_user.id}, room_params)
 
     case Repo.insert(changeset) do
       {:ok, room} ->
         conn
         |> put_status(:created)
         |> put_resp_header("location", room_path(conn, :show, room))
-        |> render("show.json", room: room)
+        |> render("show.json", data: room)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
