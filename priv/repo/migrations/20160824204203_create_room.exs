@@ -10,5 +10,6 @@ defmodule Peepchat.Repo.Migrations.CreateRoom do
     end
     create index(:rooms, [:owner_id])
 
+    create index(:rooms, [:name], unique: true)
   end
 end

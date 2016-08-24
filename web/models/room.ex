@@ -16,5 +16,6 @@ defmodule Peepchat.Room do
     |> cast(params, [:name])
     |> validate_required([:name])
     |> validate_length(:name, min: 4)
+    |> unique_constraint(:name)
   end
 end
