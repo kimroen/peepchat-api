@@ -15,5 +15,6 @@ defmodule Peepchat.Room do
     struct
     |> cast(params, [:name])
     |> validate_required([:name])
+    |> validate_length(:name, min: 4)
   end
 end
