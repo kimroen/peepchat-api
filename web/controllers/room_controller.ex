@@ -40,7 +40,7 @@ defmodule Peepchat.RoomController do
 
   def show(conn, %{"id" => id}) do
     room = Repo.get!(Room, id)
-    render(conn, "show.json", room: room)
+    render(conn, "show.json", data: room)
   end
 
   def update(conn, %{"id" => id, "room" => room_params}) do
