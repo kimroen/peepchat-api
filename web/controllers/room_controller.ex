@@ -1,5 +1,6 @@
 defmodule Peepchat.RoomController do
   use Peepchat.Web, :controller
+  import Ecto.Query
 
   alias Peepchat.Room
 
@@ -43,13 +44,18 @@ defmodule Peepchat.RoomController do
     render(conn, "show.json", data: room)
   end
 
-  def update(conn, %{"id" => id, "room" => room_params}) do
-    room = Repo.get!(Room, id)
+  def update(conn, %{"id" => id, "data" => %{"id" => _, "type" => "rooms", "attributes" => room_params}}) do
+    current_user = Guardian.Plug.current_resource(conn)
+
+    room = Room
+    |> where(owner_id: ^current_user.id, id: ^id)
+    |> Repo.one!
+
     changeset = Room.changeset(room, room_params)
 
     case Repo.update(changeset) do
       {:ok, room} ->
-        render(conn, "show.json", room: room)
+        render(conn, "show.json", data: room)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
