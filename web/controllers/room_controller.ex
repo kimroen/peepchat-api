@@ -3,6 +3,8 @@ defmodule Peepchat.RoomController do
 
   alias Peepchat.Room
 
+  plug Guardian.Plug.EnsureAuthenticated, handler: Peepchat.AuthErrorHandler
+
   def index(conn, _params) do
     rooms = Repo.all(Room)
     render(conn, "index.json", rooms: rooms)
