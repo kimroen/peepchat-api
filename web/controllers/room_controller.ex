@@ -64,7 +64,11 @@ defmodule Peepchat.RoomController do
   end
 
   def delete(conn, %{"id" => id}) do
-    room = Repo.get!(Room, id)
+    current_user = Guardian.Plug.current_resource(conn)
+
+    room = Room
+    |> where(owner_id: ^current_user.id, id: ^id)
+    |> Repo.one!
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).
