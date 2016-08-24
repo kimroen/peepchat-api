@@ -5,9 +5,17 @@ defmodule Peepchat.RoomController do
 
   plug Guardian.Plug.EnsureAuthenticated, handler: Peepchat.AuthErrorHandler
 
+  def index(conn, %{"user_id" => user_id}) do
+    rooms = Room
+    |> where(owner_id: ^user_id)
+    |> Repo.all
+
+    render(conn, "index.json", data: rooms)
+  end
+
   def index(conn, _params) do
     rooms = Repo.all(Room)
-    render(conn, "index.json", rooms: rooms)
+    render(conn, "index.json", data: rooms)
   end
 
   def create(conn, %{"room" => room_params}) do
