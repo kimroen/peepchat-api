@@ -1,7 +1,19 @@
 defmodule Peepchat.UserController do
   use Peepchat.Web, :controller
 
+  alias Peepchat.User
+
   plug Guardian.Plug.EnsureAuthenticated, handler: Peepchat.AuthErrorHandler
+
+  def index(conn, _params) do
+    users = Repo.all(User)
+    render(conn, "index.json", data: users)
+  end
+
+  def show(conn, %{"id" => id}) do
+    user = Repo.get!(User, id)
+    render(conn, "show.json", data: user)
+  end
 
   def current(conn, _params) do
     user = conn
