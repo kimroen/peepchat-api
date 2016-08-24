@@ -19,7 +19,7 @@ defmodule Peepchat.RoomController do
     render(conn, "index.json", data: rooms)
   end
 
-  def create(conn, %{"data" => %{"type" => "rooms", "attributes" => room_params, "relationships" => _}) do
+  def create(conn, %{"data" => %{"type" => "rooms", "attributes" => room_params, "relationships" => _}}) do
     # Get the current user
     current_user = Guardian.Plug.current_resource(conn)
 
